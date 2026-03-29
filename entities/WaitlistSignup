@@ -1,0 +1,15 @@
+{
+  "name": "WaitlistSignup",
+  "type": "object",
+  "properties": {
+    "email": {
+      "type": "string"
+    },
+    "university": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "email"
+  ]
+}

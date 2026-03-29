@@ -1,0 +1,60 @@
+
+<div style="display: flex; align-items: center; justify-content: center; min-height: 160px;">
+  <style>
+    .bubble {
+      background: transparent;
+      border: 2px solid #f7941d;
+      border-radius: 18px 18px 18px 4px;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transform-origin: bottom left;
+      transform: skewX(-15deg);
+      animation: bubbleLife 3s ease forwards;
+    }
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #f7941d;
+      transform: skewX(15deg);
+      animation: dotFade 1.2s ease-in-out infinite;
+    }
+    .dot:nth-child(2) { animation-delay: 0.2s; }
+    .dot:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes dotFade {
+      0%, 100% { opacity: 0.3; transform: skewX(15deg) translateY(0); }
+      50%       { opacity: 1;   transform: skewX(15deg) translateY(-3px); }
+    }
+
+    @keyframes bubbleLife {
+      0%   { opacity: 0; transform: skewX(-15deg) scale(0.2); }
+      12%  { opacity: 1; transform: skewX(-15deg) scale(1.06); }
+      20%  { transform: skewX(-15deg) scale(0.97); }
+      28%  { transform: skewX(-15deg) scale(1); }
+      72%  { transform: skewX(-15deg) scale(1);   opacity: 1; }
+      100% { transform: skewX(-15deg) scale(0);   opacity: 0; }
+    }
+  </style>
+
+  <div class="bubble">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
+</div>
+
+<div style="text-align: center; margin-top: 8px;">
+  <button onclick="restart()" style="font-size: 13px; color: var(--color-text-secondary); background: none; border: 0.5px solid var(--color-border-tertiary); border-radius: 6px; padding: 4px 12px; cursor: pointer;">replay</button>
+</div>
+
+<script>
+function restart() {
+  const b = document.querySelector('.bubble');
+  b.style.animation = 'none';
+  void b.offsetWidth;
+  b.style.animation = 'bubbleLife 3s ease forwards';
+}
+</script>
