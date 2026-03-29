@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import FinchFooter from '../components/FinchFooter';
 import SignupModal from '../components/SignupModal';
@@ -6,6 +7,7 @@ import FinchFloatingIcon from '../components/FinchFloatingIcon';
 import FinchChatBubble from '../components/FinchChatBubble';
 
 export default function Contact() {
+  const navigate = useNavigate();
   const [form, setForm] = useState({ email: '', phone: '', message: '' });
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
@@ -16,7 +18,7 @@ export default function Contact() {
   const openLoginModal = () => { setAuthMode('login'); setShowModal(true); };
   const handleSignupSuccess = () => {
     setShowModal(false);
-    window.location.href = '/';
+    navigate('/', { state: { scrollToTop: Date.now() } });
   };
 
   const validate = () => {
@@ -36,9 +38,9 @@ export default function Contact() {
   const inputStyle = (field) => ({
     width: '100%', height: field === 'message' ? 'auto' : '52px',
     padding: field === 'message' ? '16px 20px' : '0 20px',
-    background: 'rgba(255,255,255,0.05)',
-    border: `1px solid ${errors[field] ? '#D43C33' : 'rgba(212,212,212,0.15)'}`,
-    borderRadius: '14px', color: '#F2F2F2',
+    background: 'var(--surface-2)',
+    border: `1px solid ${errors[field] ? '#D43C33' : 'var(--border)'}`,
+    borderRadius: '14px', color: 'var(--text-primary)',
     fontFamily: 'Nunito Sans, sans-serif', fontSize: '15px',
     outline: 'none', boxSizing: 'border-box',
     resize: field === 'message' ? 'vertical' : 'none',
@@ -47,7 +49,7 @@ export default function Contact() {
   });
 
   return (
-    <div style={{ background: '#24364C', minHeight: '100vh' }}>
+    <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
       <Navbar onGetAccess={openSignupModal} onSignIn={openLoginModal} />
       <div style={{ paddingTop: '96px', position: 'relative' }}>
         <div
@@ -75,6 +77,7 @@ export default function Contact() {
               height: 'clamp(180px, 22vw, 360px)',
               width: 'auto',
             }}
+            forceLight={true}
           />
           <FinchChatBubble
             style={{
@@ -88,33 +91,33 @@ export default function Contact() {
         <section style={{ padding: '100px 24px', maxWidth: '600px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
           <div style={{ textAlign: 'center', marginBottom: '52px' }}>
             <div className="eyebrow" style={{ justifyContent: 'center', display: 'flex' }}>GET IN TOUCH</div>
-            <h1 style={{ fontFamily: 'Sora, sans-serif', fontWeight: 700, fontSize: 'clamp(28px, 5vw, 48px)', color: '#F2F2F2', margin: '0 0 16px' }}>
+            <h1 style={{ fontFamily: 'Sora, sans-serif', fontWeight: 700, fontSize: 'clamp(28px, 5vw, 48px)', color: 'var(--text-primary)', margin: '0 0 16px' }}>
               We'd love to hear from you.
             </h1>
-            <p style={{ fontFamily: 'Nunito Sans, sans-serif', fontSize: '16px', color: '#7A8FA0' }}>
+            <p style={{ fontFamily: 'Nunito Sans, sans-serif', fontSize: '16px', color: 'var(--text-secondary)' }}>
               Questions, feedback, or partnership inquiries — we read every message.
             </p>
           </div>
 
           {submitted ? (
             <div style={{
-              background: '#1A2A3A', borderRadius: '20px', padding: '48px',
+              background: 'var(--card-bg)', borderRadius: '20px', padding: '48px',
               textAlign: 'center',
               border: '1px solid rgba(61,184,122,0.3)',
               animation: 'slideUp 0.4s ease',
             }}>
               <div style={{ fontSize: '48px', marginBottom: '16px' }}>🎉</div>
-              <div style={{ fontFamily: 'Sora, sans-serif', fontSize: '22px', color: '#F2F2F2', fontWeight: 700, marginBottom: '8px' }}>
+              <div style={{ fontFamily: 'Sora, sans-serif', fontSize: '22px', color: 'var(--text-primary)', fontWeight: 700, marginBottom: '8px' }}>
                 Message received!
               </div>
-              <div style={{ fontFamily: 'Nunito Sans, sans-serif', fontSize: '15px', color: '#7A8FA0' }}>
+              <div style={{ fontFamily: 'Nunito Sans, sans-serif', fontSize: '15px', color: 'var(--text-secondary)' }}>
                 We'll get back to you within 24 hours.
               </div>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} style={{ background: '#1A2A3A', borderRadius: '20px', padding: '40px', border: '1px solid rgba(255,255,255,0.06)', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+            <form onSubmit={handleSubmit} style={{ background: 'var(--card-bg)', borderRadius: '20px', padding: '40px', border: '1px solid var(--border)', display: 'flex', flexDirection: 'column', gap: '20px' }}>
               <div>
-                <label style={{ fontFamily: 'Nunito Sans, sans-serif', fontSize: '13px', color: '#7A8FA0', letterSpacing: '1px', display: 'block', marginBottom: '8px' }}>EMAIL *</label>
+                <label style={{ fontFamily: 'Nunito Sans, sans-serif', fontSize: '13px', color: 'var(--text-secondary)', letterSpacing: '1px', display: 'block', marginBottom: '8px' }}>EMAIL *</label>
                 <input
                   type="email" placeholder="you@university.edu"
                   value={form.email}
@@ -125,7 +128,7 @@ export default function Contact() {
               </div>
 
               <div>
-                <label style={{ fontFamily: 'Nunito Sans, sans-serif', fontSize: '13px', color: '#7A8FA0', letterSpacing: '1px', display: 'block', marginBottom: '8px' }}>PHONE NUMBER <span style={{ color: '#7A8FA0', fontSize: '11px' }}>(optional)</span></label>
+                <label style={{ fontFamily: 'Nunito Sans, sans-serif', fontSize: '13px', color: 'var(--text-secondary)', letterSpacing: '1px', display: 'block', marginBottom: '8px' }}>PHONE NUMBER <span style={{ color: 'var(--text-tertiary)', fontSize: '11px' }}>(optional)</span></label>
                 <input
                   type="tel" placeholder="+1 (555) 000-0000"
                   value={form.phone}
@@ -135,7 +138,7 @@ export default function Contact() {
               </div>
 
               <div>
-                <label style={{ fontFamily: 'Nunito Sans, sans-serif', fontSize: '13px', color: '#7A8FA0', letterSpacing: '1px', display: 'block', marginBottom: '8px' }}>MESSAGE / QUESTIONS / CONCERNS *</label>
+                <label style={{ fontFamily: 'Nunito Sans, sans-serif', fontSize: '13px', color: 'var(--text-secondary)', letterSpacing: '1px', display: 'block', marginBottom: '8px' }}>MESSAGE / QUESTIONS / CONCERNS *</label>
                 <textarea
                   placeholder="Tell us what's on your mind..."
                   value={form.message}

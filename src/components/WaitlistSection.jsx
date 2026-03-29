@@ -56,11 +56,11 @@ export default function WaitlistSection() {
       }} />
 
       <div style={{ position: 'relative', maxWidth: '700px', margin: '0 auto' }}>
-        <h2 style={{ fontFamily: 'Sora, sans-serif', fontWeight: 700, fontSize: 'clamp(32px, 6vw, 56px)', color: '#F2F2F2', lineHeight: 1.15, marginBottom: '20px' }}>
+        <h2 style={{ fontFamily: 'Sora, sans-serif', fontWeight: 700, fontSize: 'clamp(32px, 6vw, 56px)', color: 'var(--text-primary)', lineHeight: 1.15, marginBottom: '20px' }}>
           Get more interviews.<br />Start in 60 seconds.
         </h2>
 
-        <p style={{ fontFamily: 'Nunito Sans, sans-serif', fontSize: '20px', color: '#D4D4D4', marginBottom: '44px' }}>
+        <p style={{ fontFamily: 'Nunito Sans, sans-serif', fontSize: '20px', color: 'var(--text-secondary)', marginBottom: '44px' }}>
           Join{' '}
           <span style={{ color: '#E09643', fontWeight: 700 }}>4,000+</span>
           {' '}students already on the waitlist.

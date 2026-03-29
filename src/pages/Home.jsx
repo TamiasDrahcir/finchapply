@@ -14,8 +14,10 @@ import WaitlistSection from '../components/WaitlistSection';
 import FinchFooter from '../components/FinchFooter';
 import SignupModal from '../components/SignupModal';
 import { ACCOUNT_EVENT, isLoggedIn } from '@/lib/local-account';
+import { useNavigate } from 'react-router-dom';
 
 export default function Home() {
+  const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [authMode, setAuthMode] = useState('signup');
   const [pendingPrompt, setPendingPrompt] = useState('');
@@ -38,9 +40,7 @@ export default function Home() {
   const handleSignupSuccess = () => {
     setHasSignedUp(true);
     setShowModal(false);
-    if (window.location.pathname !== '/') {
-      window.location.href = '/';
-    }
+    navigate('/', { state: { scrollToTop: Date.now() } });
   };
 
   return (

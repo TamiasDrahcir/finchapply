@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import FinchFooter from '../components/FinchFooter';
 import { Check } from 'lucide-react';
@@ -72,6 +73,7 @@ const freeVsPro = [
 ];
 
 export default function Pricing() {
+  const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [authMode, setAuthMode] = useState('signup');
 
@@ -79,7 +81,7 @@ export default function Pricing() {
   const openLoginModal = () => { setAuthMode('login'); setShowModal(true); };
   const handleSignupSuccess = () => {
     setShowModal(false);
-    window.location.href = '/';
+    navigate('/', { state: { scrollToTop: Date.now() } });
   };
 
   return (

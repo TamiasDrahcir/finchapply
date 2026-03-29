@@ -1,9 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import Navbar from '../components/Navbar';
 import FinchFooter from '../components/FinchFooter';
 import { TrendingUp, Clock, AlertCircle, Zap, Target, Flame, Plus } from 'lucide-react';
 import SignupModal from '../components/SignupModal';
+import FinchLoadingPage from '@/components/FinchLoadingPage';
 
 // ── Animated counter ──
 function CountUp({ target, suffix = '', duration = 1200 }) {
@@ -29,13 +31,6 @@ function CountUp({ target, suffix = '', duration = 1200 }) {
   }, [target]);
 
   return <>{val}{suffix}</>;
-}
-
-// ── Skeleton loader ──
-function Skeleton({ w = '100%', h = 20, radius = 8 }) {
-  return (
-    <div style={{ width: w, height: h, borderRadius: radius, background: 'linear-gradient(90deg, var(--surface-2) 25%, var(--card-bg) 50%, var(--surface-2) 75%)', backgroundSize: '200% 100%', animation: 'shimmer 1.5s infinite' }} />
-  );
 }
 
 // ── Status pill ──
@@ -134,6 +129,7 @@ function CardTitle({ children }) {
 }
 
 export default function Analytics() {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [activeView, setActiveView] = useState('overview');
   const [showConfetti, setShowConfetti] = useState(false);
@@ -150,13 +146,12 @@ export default function Analytics() {
   const openLoginModal = () => { setAuthMode('login'); setShowModal(true); };
   const handleSignupSuccess = () => {
     setShowModal(false);
-    window.location.href = '/';
+    navigate('/', { state: { scrollToTop: Date.now() } });
   };
 
   return (
     <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
       <style>{`
-        @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
         @keyframes confettiFall { 0%{transform:translateY(-20px) rotate(0deg);opacity:1} 100%{transform:translateY(100vh) rotate(720deg);opacity:0} }
         @keyframes streakPulse { 0%,100%{box-shadow:0 0 0 0 rgba(224,150,67,0.4)} 50%{box-shadow:0 0 0 8px rgba(224,150,67,0)} }
       `}</style>
@@ -219,16 +214,7 @@ export default function Analytics() {
         </div>
 
         {loading ? (
-          /* Skeleton loaders */
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px' }}>
-              {[1,2,3,4].map(i => <Card key={i}><Skeleton h={60} /></Card>)}
-            </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
-              <Card><Skeleton h={200} /></Card>
-              <Card><Skeleton h={200} /></Card>
-            </div>
-          </div>
+          <FinchLoadingPage fullscreen={false} />
         ) : activeView === 'overview' ? (
           <>
             {/* Summary stats */}

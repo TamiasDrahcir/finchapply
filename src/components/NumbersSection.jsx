@@ -55,7 +55,7 @@ export default function NumbersSection() {
     <section style={{ padding: '100px 24px', background: 'var(--bg)' }}>
       <div style={{ maxWidth: '1100px', margin: '0 auto', textAlign: 'center' }}>
         <div className="eyebrow">THE NUMBERS</div>
-        <h2 style={{ fontFamily: 'Sora, sans-serif', fontWeight: 700, fontSize: 'clamp(28px, 4vw, 48px)', color: '#F2F2F2', lineHeight: 1.2, marginBottom: '60px' }}>
+        <h2 style={{ fontFamily: 'Sora, sans-serif', fontWeight: 700, fontSize: 'clamp(28px, 4vw, 48px)', color: 'var(--text-primary)', lineHeight: 1.2, marginBottom: '60px' }}>
           Less time. More interviews.<br />The math is simple.
         </h2>
 
@@ -71,22 +71,22 @@ export default function NumbersSection() {
               }}>
                 {statsInView ? <CountUp target={s.num} suffix={s.suffix} /> : `0${s.suffix}`}
               </div>
-              <div style={{ fontFamily: 'Sora, sans-serif', fontSize: '18px', color: '#F2F2F2', fontWeight: 700, margin: '12px 0 6px' }}>{s.label}</div>
-              <div style={{ fontFamily: 'Nunito Sans, sans-serif', fontSize: '14px', color: '#7A8FA0' }}>{s.sub}</div>
+              <div style={{ fontFamily: 'Sora, sans-serif', fontSize: '18px', color: 'var(--text-primary)', fontWeight: 700, margin: '12px 0 6px' }}>{s.label}</div>
+              <div style={{ fontFamily: 'Nunito Sans, sans-serif', fontSize: '14px', color: 'var(--text-secondary)' }}>{s.sub}</div>
             </div>
           ))}
         </div>
 
         {/* Bar chart */}
-        <div ref={barsRef} style={{ background: '#1A2A3A', borderRadius: '20px', padding: '36px', marginBottom: '60px', textAlign: 'left' }}>
+        <div ref={barsRef} style={{ background: 'var(--card-bg)', borderRadius: '20px', padding: '36px', marginBottom: '60px', textAlign: 'left', border: '1px solid var(--border)' }}>
           {[
             { label: 'Without Finch', width: '100%', color: '#7A8FA0', endLabel: '46 hrs', glow: false },
             { label: 'With Finch  ⚡', width: '3.3%', color: 'linear-gradient(90deg, #D43C33, #E09643)', endLabel: '1.5 hrs', glow: true },
           ].map((bar, i) => (
             <div key={i} style={{ marginBottom: i === 0 ? '20px' : 0 }}>
-              <div style={{ fontFamily: 'Nunito Sans, sans-serif', fontSize: '14px', color: '#D4D4D4', marginBottom: '8px', fontWeight: 600 }}>{bar.label}</div>
+              <div style={{ fontFamily: 'Nunito Sans, sans-serif', fontSize: '14px', color: 'var(--text-primary)', marginBottom: '8px', fontWeight: 600 }}>{bar.label}</div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <div style={{ flex: 1, height: '12px', background: 'rgba(255,255,255,0.05)', borderRadius: '999px', overflow: 'hidden' }}>
+                <div style={{ flex: 1, height: '12px', background: 'var(--surface-2)', borderRadius: '999px', overflow: 'hidden' }}>
                   <div style={{
                     height: '100%',
                     width: barsInView ? bar.width : '0%',
@@ -96,7 +96,7 @@ export default function NumbersSection() {
                     boxShadow: bar.glow ? '0 0 12px rgba(212,60,51,0.5)' : 'none',
                   }} />
                 </div>
-                <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', color: '#D4D4D4', minWidth: '45px' }}>{bar.endLabel}</div>
+                <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', color: 'var(--text-secondary)', minWidth: '45px' }}>{bar.endLabel}</div>
               </div>
             </div>
           ))}
@@ -105,8 +105,8 @@ export default function NumbersSection() {
         {/* Chrome extension mid-page CTA */}
         <div style={{
           margin: '0 0 48px',
-          background: 'linear-gradient(135deg, rgba(212,60,51,0.1), rgba(224,150,67,0.08))',
-          border: '1px solid rgba(212,60,51,0.2)',
+          background: 'var(--surface-2)',
+          border: '1px solid var(--border)',
           borderRadius: '16px', padding: '24px 28px',
           display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px',
         }}>
@@ -134,11 +134,11 @@ export default function NumbersSection() {
           {testimonials.map((t, i) => (
             <div key={i} style={{
               flex: '1 1 280px', maxWidth: '340px',
-              background: '#1A2A3A', borderRadius: '20px', padding: '28px',
-              border: '1px solid rgba(255,255,255,0.06)',
+              background: 'var(--card-bg)', borderRadius: '20px', padding: '28px',
+              border: '1px solid var(--border)',
               textAlign: 'left',
             }}>
-              <p style={{ fontFamily: 'Nunito Sans, sans-serif', fontSize: '15px', color: '#D4D4D4', lineHeight: 1.7, marginBottom: '20px', fontStyle: 'italic' }}>
+              <p style={{ fontFamily: 'Nunito Sans, sans-serif', fontSize: '15px', color: 'var(--text-secondary)', lineHeight: 1.7, marginBottom: '20px', fontStyle: 'italic' }}>
                 "{t.quote}"
               </p>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
@@ -149,7 +149,7 @@ export default function NumbersSection() {
                   fontFamily: 'Sora, sans-serif', fontSize: '14px', fontWeight: 700, color: '#fff',
                 }}>{t.initials}</div>
                 <div>
-                  <div style={{ fontFamily: 'Sora, sans-serif', fontSize: '14px', color: '#F2F2F2', fontWeight: 700 }}>{t.name}</div>
+                  <div style={{ fontFamily: 'Sora, sans-serif', fontSize: '14px', color: 'var(--text-primary)', fontWeight: 700 }}>{t.name}</div>
                   <div style={{ fontFamily: 'Nunito Sans, sans-serif', fontSize: '12px', color: '#E09643' }}>{t.school}</div>
                 </div>
               </div>

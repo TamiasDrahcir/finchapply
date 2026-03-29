@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import FinchFooter from '../components/FinchFooter';
 import SignupModal from '../components/SignupModal';
@@ -15,6 +16,7 @@ const passwordChecksFor = (password) => [
 ];
 
 export default function Profile() {
+  const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [authMode, setAuthMode] = useState('login');
   const [account, setAccount] = useState(() => getStoredAccount());
@@ -33,7 +35,7 @@ export default function Profile() {
   const openLoginModal = () => { setAuthMode('login'); setShowModal(true); };
   const handleAuthSuccess = () => {
     setShowModal(false);
-    window.location.href = '/profile';
+    navigate('/profile', { state: { scrollToTop: Date.now() } });
   };
 
   const handleSave = (e) => {

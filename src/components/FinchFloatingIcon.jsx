@@ -11,7 +11,7 @@ function getTheme() {
   return 'dark';
 }
 
-export default function FinchFloatingIcon({ style = {}, imageStyle = {} }) {
+export default function FinchFloatingIcon({ style = {}, imageStyle = {}, forceLight = false }) {
   const [theme, setTheme] = useState(() => getTheme());
 
   useEffect(() => {
@@ -46,7 +46,7 @@ export default function FinchFloatingIcon({ style = {}, imageStyle = {} }) {
       }}
     >
       <img
-        src={theme === 'light' ? iconDark : iconLight}
+        src={forceLight ? iconLight : theme === 'light' ? iconDark : iconLight}
         alt=""
         style={{
           display: 'block',

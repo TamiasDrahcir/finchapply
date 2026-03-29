@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, Sun, Moon } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logoLight from '@/assets/Logo-Light.png';
 import logoDark from '@/assets/Logo-Dark.png';
 import { ACCOUNT_EVENT, getStoredAccount, isLoggedIn, logoutLocalAccount } from '@/lib/local-account';
@@ -14,6 +14,7 @@ function getInitialTheme() {
 }
 
 export default function Navbar({ onGetAccess, onSignIn }) {
+  const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [logosPreloaded, setLogosPreloaded] = useState(false);
   const [account, setAccount] = useState(() => getStoredAccount());
@@ -70,9 +71,7 @@ export default function Navbar({ onGetAccess, onSignIn }) {
   const handleLogout = () => {
     logoutLocalAccount();
     setMobileOpen(false);
-    if (window.location.pathname !== '/') {
-      window.location.href = '/';
-    }
+    navigate('/', { state: { scrollToTop: Date.now() } });
   };
 
   const logoTransition = logosPreloaded ? 'opacity 0.18s ease' : 'none';

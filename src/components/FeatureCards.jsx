@@ -14,8 +14,8 @@ function useInView() {
 function ResumeBuilderPreview() {
   return (
     <div style={{
-      background: '#1A2535', borderRadius: '16px', padding: '24px',
-      fontFamily: 'Nunito Sans, sans-serif', fontSize: '12px', color: '#D4D4D4',
+      background: 'var(--card-bg)', borderRadius: '16px', padding: '24px',
+      fontFamily: 'Nunito Sans, sans-serif', fontSize: '12px', color: 'var(--text-secondary)',
       position: 'relative', overflow: 'hidden',
       boxShadow: '0 20px 60px rgba(0,0,0,0.4)',
     }}>
@@ -25,8 +25,8 @@ function ResumeBuilderPreview() {
       </div>
       {/* Name header */}
       <div style={{ borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '12px', marginBottom: '12px' }}>
-        <div style={{ fontFamily: 'Sora, sans-serif', fontWeight: 700, fontSize: '16px', color: '#F2F2F2' }}>SARAH J. MILLER</div>
-        <div style={{ color: '#7A8FA0', fontSize: '11px' }}>Product Manager</div>
+        <div style={{ fontFamily: 'Sora, sans-serif', fontWeight: 700, fontSize: '16px', color: 'var(--text-primary)' }}>SARAH J. MILLER</div>
+        <div style={{ color: 'var(--text-tertiary)', fontSize: '11px' }}>Product Manager</div>
         <div style={{ display: 'flex', gap: '6px', marginTop: '8px', flexWrap: 'wrap' }}>
           {['Strategic Leader','Technical Coordination','Performance Metrics & KPI'].map(t => (
             <span key={t} style={{ background: 'rgba(212,60,51,0.15)', border: '1px solid rgba(212,60,51,0.3)', borderRadius: '4px', padding: '2px 7px', fontSize: '9px', color: '#E09643' }}>{t}</span>
@@ -36,7 +36,7 @@ function ResumeBuilderPreview() {
       {/* Two col */}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '10px' }}>
         <div>
-          <div style={{ fontSize: '9px', color: '#7A8FA0', letterSpacing: '1px', marginBottom: '6px' }}>ROLE-SPECIFIC OPT.</div>
+          <div style={{ fontSize: '9px', color: 'var(--text-tertiary)', letterSpacing: '1px', marginBottom: '6px' }}>ROLE-SPECIFIC OPT.</div>
           {['Senior prioritization','Keywords + Achievements','Product Strategy'].map(i => (
             <div key={i} style={{ display: 'flex', gap: '5px', alignItems: 'center', marginBottom: '4px' }}>
               <span style={{ color: '#3DB87A', fontSize: '10px' }}>✓</span>
@@ -45,13 +45,13 @@ function ResumeBuilderPreview() {
           ))}
         </div>
         <div>
-          <div style={{ fontSize: '9px', color: '#7A8FA0', letterSpacing: '1px', marginBottom: '6px' }}>ATS ALIGNMENT</div>
+          <div style={{ fontSize: '9px', color: 'var(--text-tertiary)', letterSpacing: '1px', marginBottom: '6px' }}>ATS ALIGNMENT</div>
           <div style={{ position: 'relative', width: '60px', height: '60px', margin: '0 auto' }}>
             <svg viewBox="0 0 60 60" style={{ transform: 'rotate(-90deg)' }}>
               <circle cx="30" cy="30" r="24" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="6" />
               <circle cx="30" cy="30" r="24" fill="none" stroke="#D43C33" strokeWidth="6" strokeDasharray={`${2 * Math.PI * 24 * 0.94} ${2 * Math.PI * 24 * 0.06}`} strokeLinecap="round" />
             </svg>
-            <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', fontWeight: 700, color: '#F2F2F2' }}>94%</div>
+            <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', fontWeight: 700, color: 'var(--text-primary)' }}>94%</div>
           </div>
         </div>
         <div>
@@ -85,13 +85,13 @@ function JobMatchPreview() {
         }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
             <div>
-              <div style={{ fontFamily: 'Sora, sans-serif', fontSize: '14px', color: '#F2F2F2', fontWeight: 600 }}>{job.title}</div>
-              <div style={{ fontFamily: 'Nunito Sans, sans-serif', fontSize: '12px', color: '#7A8FA0' }}>{job.company}</div>
-              <div style={{ fontFamily: 'Nunito Sans, sans-serif', fontSize: '12px', color: '#7A8FA0' }}>{job.loc}</div>
+              <div style={{ fontFamily: 'Sora, sans-serif', fontSize: '14px', color: 'var(--text-primary)', fontWeight: 600 }}>{job.title}</div>
+              <div style={{ fontFamily: 'Nunito Sans, sans-serif', fontSize: '12px', color: 'var(--text-tertiary)' }}>{job.company}</div>
+              <div style={{ fontFamily: 'Nunito Sans, sans-serif', fontSize: '12px', color: 'var(--text-tertiary)' }}>{job.loc}</div>
             </div>
             <div style={{ textAlign: 'right' }}>
               <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '18px', fontWeight: 700, color: job.score >= 83 ? '#3DB87A' : '#E09643' }}>{job.score}</div>
-              <div style={{ fontSize: '9px', color: '#7A8FA0', letterSpacing: '1px' }}>ATS</div>
+              <div style={{ fontSize: '9px', color: 'var(--text-tertiary)', letterSpacing: '1px' }}>ATS</div>
             </div>
           </div>
           <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>

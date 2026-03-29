@@ -1,7 +1,9 @@
 import { Toaster } from "@/components/ui/toaster"
 import { QueryClientProvider } from '@tanstack/react-query'
 import { queryClientInstance } from '@/lib/query-client'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { useEffect, useLayoutEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import FinchLoadingPage from '@/components/FinchLoadingPage';
 import PageNotFound from './lib/PageNotFound';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
@@ -16,11 +18,56 @@ import Features from './pages/Features';
 import HowItWorks from './pages/HowItWorks';
 import Profile from './pages/Profile';
 
+const ScrollToTop = () => {
+  const { pathname, search, key } = useLocation();
+
+  useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+  }, []);
+
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+    if (document.documentElement) {
+      document.documentElement.scrollTop = 0;
+    }
+    if (document.body) {
+      document.body.scrollTop = 0;
+    }
+
+    requestAnimationFrame(() => {
+      window.scrollTo(0, 0);
+    });
+  }, [pathname, search, key]);
+
+  return null;
+};
+
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
+  const [showSlowLoader, setShowSlowLoader] = useState(false);
+  const isBootLoading = isLoadingPublicSettings || isLoadingAuth;
+
+  useEffect(() => {
+    if (!isBootLoading) {
+      setShowSlowLoader(false);
+      return;
+    }
+
+    const timer = window.setTimeout(() => {
+      setShowSlowLoader(true);
+    }, 900);
+
+    return () => window.clearTimeout(timer);
+  }, [isBootLoading]);
 
   // Show loading spinner while checking app public settings or auth
-  if (isLoadingPublicSettings || isLoadingAuth) {
+  if (isBootLoading) {
+    if (showSlowLoader) {
+      return <FinchLoadingPage />;
+    }
+
     return (
       <div className="fixed inset-0 flex items-center justify-center">
         <div className="w-8 h-8 border-4 border-slate-200 border-t-slate-800 rounded-full animate-spin"></div>
@@ -61,12 +108,18 @@ const AuthenticatedApp = () => {
 
 
 function App() {
-  const routerBase = (import.meta.env.BASE_URL || '/').replace(/\/$/, '') || '/';
+  const configuredBase = (import.meta.env.BASE_URL || '/').replace(/\/$/, '') || '/';
+  const isConfiguredBaseActive =
+    configuredBase !== '/' &&
+    (window.location.pathname === configuredBase ||
+      window.location.pathname.startsWith(`${configuredBase}/`));
+  const routerBase = isConfiguredBaseActive ? configuredBase : '/';
 
   return (
     <AuthProvider>
       <QueryClientProvider client={queryClientInstance}>
         <Router basename={routerBase}>
+          <ScrollToTop />
           <AuthenticatedApp />
         </Router>
         <Toaster />

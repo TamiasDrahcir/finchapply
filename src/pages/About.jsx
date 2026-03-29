@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import FinchFooter from '../components/FinchFooter';
 import FoundersMarquee from '../components/FoundersMarquee';
@@ -16,6 +17,7 @@ function useInView() {
 }
 
 export default function About() {
+  const navigate = useNavigate();
   const [heroRef, heroV] = useInView();
   const [aboutRef, aboutV] = useInView();
   const [originRef, originV] = useInView();
@@ -26,11 +28,11 @@ export default function About() {
   const openLoginModal = () => { setAuthMode('login'); setShowModal(true); };
   const handleSignupSuccess = () => {
     setShowModal(false);
-    window.location.href = '/';
+    navigate('/', { state: { scrollToTop: Date.now() } });
   };
 
   return (
-    <div style={{ background: '#24364C', minHeight: '100vh' }}>
+    <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
       <Navbar onGetAccess={openSignupModal} onSignIn={openLoginModal} />
       <div style={{ paddingTop: '96px' }}>
 
@@ -38,7 +40,7 @@ export default function About() {
         <section ref={heroRef} style={{
           padding: '100px 24px 80px',
           textAlign: 'center',
-          background: 'linear-gradient(180deg, #1A2A3A 0%, #24364C 100%)',
+          background: 'var(--surface-1)',
           opacity: heroV ? 1 : 0,
           transform: heroV ? 'translateY(0)' : 'translateY(24px)',
           transition: 'opacity 0.6s, transform 0.6s',
@@ -46,7 +48,7 @@ export default function About() {
           <div className="eyebrow" style={{ justifyContent: 'center', display: 'flex' }}>OUR STORY</div>
           <h1 style={{
             fontFamily: 'Sora, sans-serif', fontWeight: 700,
-            fontSize: 'clamp(36px, 6vw, 72px)', color: '#F2F2F2',
+            fontSize: 'clamp(36px, 6vw, 72px)', color: 'var(--text-primary)',
             lineHeight: 1.1, margin: '0 auto 24px', maxWidth: '700px',
           }}>
             About{' '}
@@ -56,7 +58,7 @@ export default function About() {
             }}>Finch</span>
           </h1>
           <p style={{
-            fontFamily: 'Nunito Sans, sans-serif', fontSize: '20px', color: '#D4D4D4',
+            fontFamily: 'Nunito Sans, sans-serif', fontSize: '20px', color: 'var(--text-secondary)',
             lineHeight: 1.6, maxWidth: '600px', margin: '0 auto',
           }}>
             Built by a student who was tired of sending 100 applications and hearing nothing back.
@@ -72,13 +74,13 @@ export default function About() {
             opacity: aboutV ? 1 : 0, transform: aboutV ? 'translateY(0)' : 'translateY(24px)',
             transition: 'opacity 0.6s, transform 0.6s',
           }}>
-            <h2 style={{ fontFamily: 'Sora, sans-serif', fontWeight: 700, fontSize: 'clamp(24px, 4vw, 40px)', color: '#F2F2F2', marginBottom: '32px' }}>
+            <h2 style={{ fontFamily: 'Sora, sans-serif', fontWeight: 700, fontSize: 'clamp(24px, 4vw, 40px)', color: 'var(--text-primary)', marginBottom: '32px' }}>
               What Finch Is
             </h2>
 
             <div style={{
-              background: '#1A2A3A', borderRadius: '20px',
-              border: '1px solid rgba(255,255,255,0.06)',
+              background: 'var(--card-bg)', borderRadius: '20px',
+              border: '1px solid var(--border)',
               padding: '40px',
               display: 'flex', flexDirection: 'column', gap: '24px',
             }}>
@@ -87,7 +89,7 @@ export default function About() {
                 "Finch streamlines the internship application process by combining AI-powered resume tailoring with automated form-filling. Users sign up, connect their LinkedIn profile, and the system generates a rich candidate profile. When browsing job postings on major ATS platforms (Greenhouse, Lever, Workday), the Chrome extension detects the application, generates a tailored resume and cover letter in seconds, and autofills the entire form — turning what takes 20–30 minutes into under 60 seconds.",
               ].map((para, i) => (
                 <p key={i} style={{
-                  fontFamily: 'Nunito Sans, sans-serif', fontSize: '17px', color: '#D4D4D4',
+                  fontFamily: 'Nunito Sans, sans-serif', fontSize: '17px', color: 'var(--text-secondary)',
                   lineHeight: 1.8, margin: 0,
                 }}>{para}</p>
               ))}
@@ -102,12 +104,12 @@ export default function About() {
                 { val: '40+', label: 'Universities' },
               ].map((s, i) => (
                 <div key={i} style={{
-                  background: '#1A2A3A', borderRadius: '999px',
+                  background: 'var(--surface-1)', borderRadius: '999px',
                   border: '1px solid rgba(212,60,51,0.25)',
                   padding: '10px 20px', display: 'flex', gap: '10px', alignItems: 'center',
                 }}>
                   <span style={{ fontFamily: 'JetBrains Mono, monospace', color: '#E09643', fontWeight: 700, fontSize: '15px' }}>{s.val}</span>
-                  <span style={{ fontFamily: 'Nunito Sans, sans-serif', fontSize: '13px', color: '#7A8FA0' }}>{s.label}</span>
+                  <span style={{ fontFamily: 'Nunito Sans, sans-serif', fontSize: '13px', color: 'var(--text-tertiary)' }}>{s.label}</span>
                 </div>
               ))}
             </div>
@@ -124,7 +126,7 @@ export default function About() {
             transition: 'opacity 0.6s 0.1s, transform 0.6s 0.1s',
           }}>
             <div className="eyebrow">ORIGIN STORY</div>
-            <h2 style={{ fontFamily: 'Sora, sans-serif', fontWeight: 700, fontSize: 'clamp(24px, 4vw, 40px)', color: '#F2F2F2', marginBottom: '40px' }}>
+            <h2 style={{ fontFamily: 'Sora, sans-serif', fontWeight: 700, fontSize: 'clamp(24px, 4vw, 40px)', color: 'var(--text-primary)', marginBottom: '40px' }}>
               How Finch Started
             </h2>
 
@@ -145,8 +147,8 @@ export default function About() {
               }} />
 
               <div style={{
-                background: '#1A2A3A', borderRadius: '20px',
-                border: '1px solid rgba(255,255,255,0.06)',
+                background: 'var(--card-bg)', borderRadius: '20px',
+                border: '1px solid var(--border)',
                 padding: '36px',
               }}>
                 <div style={{
@@ -159,12 +161,12 @@ export default function About() {
                     fontFamily: 'Sora, sans-serif', fontWeight: 700, fontSize: '18px', color: '#fff', flexShrink: 0,
                   }}>C</div>
                   <div>
-                    <div style={{ fontFamily: 'Sora, sans-serif', fontSize: '16px', color: '#F2F2F2', fontWeight: 700 }}>Carlos, Founder</div>
+                    <div style={{ fontFamily: 'Sora, sans-serif', fontSize: '16px', color: 'var(--text-primary)', fontWeight: 700 }}>Carlos, Founder</div>
                     <div style={{ fontFamily: 'Nunito Sans, sans-serif', fontSize: '13px', color: '#E09643' }}>CS Major → Builder</div>
                   </div>
                 </div>
                 <p style={{
-                  fontFamily: 'Nunito Sans, sans-serif', fontSize: '17px', color: '#D4D4D4',
+                  fontFamily: 'Nunito Sans, sans-serif', fontSize: '17px', color: 'var(--text-secondary)',
                   lineHeight: 1.8, margin: 0,
                 }}>
                   Carlos was trying to apply to internships as a CS major and was not getting any responses from mass applications. He understood his own pain points and thought of a more efficient way to approach the process. He built a functioning backend that minimized the number of applications he had to fill out while maximizing his success rate for interviews. That's how Finch was born.
@@ -178,7 +180,7 @@ export default function About() {
 
         {/* CTA */}
         <section style={{ padding: '60px 24px 100px', textAlign: 'center' }}>
-          <p style={{ fontFamily: 'Nunito Sans, sans-serif', fontSize: '18px', color: '#7A8FA0', marginBottom: '24px' }}>
+          <p style={{ fontFamily: 'Nunito Sans, sans-serif', fontSize: '18px', color: 'var(--text-secondary)', marginBottom: '24px' }}>
             Ready to apply smarter?
           </p>
           <button onClick={openSignupModal} className="btn-primary" style={{ height: '52px', padding: '0 36px', fontSize: '16px' }}>

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Navbar from '../components/Navbar';
 import FinchFooter from '../components/FinchFooter';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Search, Cpu, FileText, CheckSquare, Chrome, BarChart2, ArrowRight, Zap } from 'lucide-react';
 import SignupModal from '../components/SignupModal';
 
@@ -138,6 +138,7 @@ function StepCard({ step, index }) {
 }
 
 export default function HowItWorks() {
+  const navigate = useNavigate();
   const [heroRef, heroInView] = useInView(0.05);
   const [whyRef, whyInView] = useInView(0.1);
   const [showModal, setShowModal] = useState(false);
@@ -147,7 +148,7 @@ export default function HowItWorks() {
   const openLoginModal = () => { setAuthMode('login'); setShowModal(true); };
   const handleSignupSuccess = () => {
     setShowModal(false);
-    window.location.href = '/';
+    navigate('/', { state: { scrollToTop: Date.now() } });
   };
 
   return (

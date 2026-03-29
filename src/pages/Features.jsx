@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Navbar from '../components/Navbar';
 import FinchFooter from '../components/FinchFooter';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FileText, Target, Chrome, BarChart2, Zap, CheckCircle, ArrowRight, Star } from 'lucide-react';
 import SignupModal from '../components/SignupModal';
 
@@ -215,6 +215,7 @@ const FEATURES = [
 ];
 
 export default function Features() {
+  const navigate = useNavigate();
   const [heroRef, heroInView] = useInView(0.05);
   const [showModal, setShowModal] = useState(false);
   const [authMode, setAuthMode] = useState('signup');
@@ -223,7 +224,7 @@ export default function Features() {
   const openLoginModal = () => { setAuthMode('login'); setShowModal(true); };
   const handleSignupSuccess = () => {
     setShowModal(false);
-    window.location.href = '/';
+    navigate('/', { state: { scrollToTop: Date.now() } });
   };
 
   return (

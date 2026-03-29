@@ -29,7 +29,7 @@ export default function ChatHero({ onPromptSubmit }) {
         position: 'absolute', top: '40%', left: '50%',
         transform: 'translate(-50%, -50%)',
         width: '700px', height: '400px',
-        background: 'radial-gradient(ellipse, rgba(212,60,51,0.07) 0%, transparent 70%)',
+        background: 'var(--surface-1)',
         pointerEvents: 'none',
       }} />
 

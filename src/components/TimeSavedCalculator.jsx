@@ -36,10 +36,10 @@ export default function TimeSavedCalculator() {
     <section style={{ padding: '100px 24px', background: 'var(--surface-1)' }}>
       <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
         <div className="eyebrow">TIME SAVINGS</div>
-        <h2 style={{ fontFamily: 'Sora, sans-serif', fontWeight: 700, fontSize: 'clamp(28px, 4vw, 44px)', color: '#F2F2F2', lineHeight: 1.2, marginBottom: '16px' }}>
+        <h2 style={{ fontFamily: 'Sora, sans-serif', fontWeight: 700, fontSize: 'clamp(28px, 4vw, 44px)', color: 'var(--text-primary)', lineHeight: 1.2, marginBottom: '16px' }}>
           How much time would you save?
         </h2>
-        <p style={{ fontFamily: 'Nunito Sans, sans-serif', fontSize: '17px', color: '#7A8FA0', marginBottom: '44px' }}>
+        <p style={{ fontFamily: 'Nunito Sans, sans-serif', fontSize: '17px', color: 'var(--text-secondary)', marginBottom: '44px' }}>
           Select your average time per manual application
         </p>
 
@@ -49,7 +49,7 @@ export default function TimeSavedCalculator() {
             <button key={t} onClick={() => setSelected(t)} style={{
               padding: '12px 24px', borderRadius: '999px', border: 'none', cursor: 'pointer',
               background: selected === t ? '#D43C33' : 'rgba(255,255,255,0.06)',
-              color: selected === t ? '#fff' : '#D4D4D4',
+              color: selected === t ? '#fff' : 'var(--text-secondary)',
               fontFamily: 'JetBrains Mono, monospace', fontSize: '15px', fontWeight: 700,
               transition: 'all 0.2s',
               transform: selected === t ? 'scale(1.05)' : 'scale(1)',
@@ -72,10 +72,10 @@ export default function TimeSavedCalculator() {
             <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '48px', fontWeight: 700, color: '#D43C33', lineHeight: 1 }}>
               <AnimatedNumber value={manualHours} />h
             </div>
-            <div style={{ fontFamily: 'Nunito Sans, sans-serif', fontSize: '14px', color: '#7A8FA0', marginTop: '8px' }}>
+            <div style={{ fontFamily: 'Nunito Sans, sans-serif', fontSize: '14px', color: 'var(--text-secondary)', marginTop: '8px' }}>
               for {APPS_PER_CYCLE} applications
             </div>
-            <div style={{ fontFamily: 'Nunito Sans, sans-serif', fontSize: '13px', color: '#D4D4D4', marginTop: '12px', padding: '8px 12px', background: 'rgba(212,60,51,0.08)', borderRadius: '8px' }}>
+            <div style={{ fontFamily: 'Nunito Sans, sans-serif', fontSize: '13px', color: 'var(--text-secondary)', marginTop: '12px', padding: '8px 12px', background: 'rgba(212,60,51,0.08)', borderRadius: '8px' }}>
               {selected} min × {APPS_PER_CYCLE} apps
             </div>
           </div>
@@ -91,10 +91,10 @@ export default function TimeSavedCalculator() {
             <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '48px', fontWeight: 700, color: '#3DB87A', lineHeight: 1 }}>
               <AnimatedNumber value={finchHours} />h
             </div>
-            <div style={{ fontFamily: 'Nunito Sans, sans-serif', fontSize: '14px', color: '#7A8FA0', marginTop: '8px' }}>
+            <div style={{ fontFamily: 'Nunito Sans, sans-serif', fontSize: '14px', color: 'var(--text-secondary)', marginTop: '8px' }}>
               for {APPS_PER_CYCLE} applications
             </div>
-            <div style={{ fontFamily: 'Nunito Sans, sans-serif', fontSize: '13px', color: '#D4D4D4', marginTop: '12px', padding: '8px 12px', background: 'rgba(61,184,122,0.08)', borderRadius: '8px' }}>
+            <div style={{ fontFamily: 'Nunito Sans, sans-serif', fontSize: '13px', color: 'var(--text-secondary)', marginTop: '12px', padding: '8px 12px', background: 'rgba(61,184,122,0.08)', borderRadius: '8px' }}>
               ~60s × {APPS_PER_CYCLE} apps
             </div>
           </div>
@@ -107,7 +107,7 @@ export default function TimeSavedCalculator() {
           borderRadius: '20px', padding: '28px',
           textAlign: 'center',
         }}>
-          <div style={{ fontFamily: 'Nunito Sans, sans-serif', fontSize: '14px', color: '#7A8FA0', marginBottom: '8px' }}>YOU SAVE</div>
+          <div style={{ fontFamily: 'Nunito Sans, sans-serif', fontSize: '14px', color: 'var(--text-secondary)', marginBottom: '8px' }}>YOU SAVE</div>
           <div style={{
             fontFamily: 'JetBrains Mono, monospace', fontSize: '52px', fontWeight: 700,
             background: 'linear-gradient(90deg, #D43C33, #E09643)',
@@ -116,7 +116,7 @@ export default function TimeSavedCalculator() {
           }}>
             ~<AnimatedNumber value={savedHours} />h
           </div>
-          <div style={{ fontFamily: 'Nunito Sans, sans-serif', fontSize: '16px', color: '#D4D4D4', marginTop: '10px' }}>
+          <div style={{ fontFamily: 'Nunito Sans, sans-serif', fontSize: '16px', color: 'var(--text-primary)', marginTop: '10px' }}>
             per application cycle — that's{' '}
             <span style={{ fontFamily: 'JetBrains Mono, monospace', color: '#E09643', fontWeight: 700 }}>{pctSaved}%</span>{' '}
             of your time back
